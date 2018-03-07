@@ -7,19 +7,35 @@
   "author": "Nik Korablin <nikorablin@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "webpack --mode=production"
+  },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
+    "babel-eslint": "8.2.2",
     "babel-loader": "7.1.4",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-plugin-transform-react-jsx": "6.24.1",
     "babel-preset-env": "1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "css-loader": "0.28.10",
     "eslint": "4.18.2",
     "eslint-config-airbnb": "16.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-flowtype": "2.46.1",
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.7.0",
+    "flow-bin": "^0.66.0",
     "webpack": "4.1.1",
     "webpack-cli": "2.0.10"
+  },
+  "dependencies": {
+    "react": "16.2.0"
+  },
+  "peerDependencies": {
+    "react": "16.2.0"
   }
 }
