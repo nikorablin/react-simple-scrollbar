@@ -1,0 +1,10 @@
+{
+  "name": "react-simple-scrollbar",
+  "version": "0.0.1",
+  "description": "Simple scrollbar component for React that uses webkit scrollbar styling when possible",
+  "main": "src/index.js",
+  "repository": "git@github.com:nikorablin/react-simple-scrollbar.git",
+  "author": "Nik Korablin <nikorablin@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
