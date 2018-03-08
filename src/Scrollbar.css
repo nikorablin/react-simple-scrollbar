@@ -1,3 +1,84 @@
+$scrollbarWidth: 8px;
+$trackColor: 'transparent';
+$thumbColor: rgba(0, 0, 0, 0.1);
+
+.wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  &:hover {
+    .thumb {
+      opacity: 1;
+    }
+  }
+}
+
+.wrapperDragging {
+  user-select: none;
+}
+
 .container {
   overflow: auto;
+  overflow-x: hidden;
+  height: 100%;
+
+  &::-webkit-scrollbar-track {
+    border-radius: $scrollbarWidth;
+    background-color: $trackColor;
+  }
+
+  &::-webkit-scrollbar {
+    width: $scrollbarWidth;
+    background-color: $trackColor;
+    opacity: 0;
+    left: -100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumbColor;
+    border-radius: $scrollbarWidth;
+    background-clip: padding-box;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: $thumbColor;
+    }
+  }
+
+  &--hideOnInactive {
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
+  }
+}
+
+.polyfilled {
+  margin-right: -16px;
+}
+
+.track {
+  position: absolute;
+  width: $scrollbarWidth;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: $trackColor;
+}
+
+.thumb {
+  background: $thumbColor;
+  border-radius: $scrollbarWidth;
+  width: $scrollbarWidth;
+  position: absolute;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s;
+  &--hideOnInactive {
+    opacity: 0;
+  }
+}
+
+.thumbActive {
+  opacity: 1;
 }

@@ -1,9 +1,50 @@
 body, html, #mount {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
-  overflow: hidden
+  overflow: hidden;
+  line-height: 1.5em;
+}
+
+#mount {
+  padding: 32px;
+}
+
+h1 {
+  margin-top: 0;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #ccc;
+}
+
+.scrollbar {
+  padding: 8px;
+}
+
+.scrollbarContainer {
+  height: 200px;
+  width: 400px;
+  border: 1px solid #ccc;
+}
+
+.scrollbarContainer--horizontal {
+  width: 50%;
+  height: 200px;
+}
+
+.scrollbar--horizontal {
+  display: flex;
+}
+
+.scrollbar--horizontal p {
+  flex: 1;
+  margin-right: 8px;
+}
+
+p {
+  color: #333;
+}
+
+p:first-child {
+  margin-top: 0;
 }

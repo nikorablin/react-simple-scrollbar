@@ -15,7 +15,8 @@ module.exports = {
     'react/sort-comp': 'off',
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
-    'flowtype/no-types-missing-file-annotation': 'off'
+    'flowtype/no-types-missing-file-annotation': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off'
   },
   env: {
     browser: true,
