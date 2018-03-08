@@ -1,17 +1,19 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  context: path.resolve(__dirname, 'demo'),
+  entry: {
+    app: './index.js'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    path: path.resolve(__dirname, 'demo'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
+        include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'demo')],
         exclude: /node_modules/,
         use: ['babel-loader']
       },
@@ -24,7 +26,8 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
-  externals: {
-    react: 'commonjs react'
+  devServer: {
+    open: false,
+    contentBase: path.resolve(__dirname, 'demo')
   }
 };
