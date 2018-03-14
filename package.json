@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "yarn run build && webpack-dev-server --hot --inline --config=webpack.demo.config.js --mode=development"
+    "start": "yarn run build && webpack-dev-server --hot --inline --config=webpack.demo.config.js --mode=development",
+    "test": "jest"
   },
   "babel": {
     "presets": [
@@ -22,6 +23,7 @@
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.2",
+    "babel-jest": "22.4.1",
     "babel-loader": "7.1.4",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
@@ -31,6 +33,8 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "css-loader": "0.28.10",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint": "4.18.2",
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "2.9.0",
@@ -40,10 +44,14 @@
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.7.0",
     "flow-bin": "0.66.0",
+    "jest": "22.4.2",
+    "jest-css-modules": "1.1.0",
     "postcss-loader": "2.1.1",
     "postcss-nested": "3.0.0",
     "postcss-simple-vars": "4.1.0",
     "react-hot-loader": "4.0.0",
+    "react-test-renderer": "16.2.0",
+    "sinon": "4.4.5",
     "style-loader": "0.20.2",
     "webpack": "4.1.1",
     "webpack-cli": "2.0.10",
@@ -57,5 +65,20 @@
   },
   "peerDependencies": {
     "react": "16.2.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/*.spec.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "dist"
+    ],
+    "moduleNameMapper": {
+      "\\.(css)$": "jest-css-modules"
+    },
+    "setupFiles": [
+      "<rootDir>/jest.env.js"
+    ]
   }
 }

@@ -9,7 +9,12 @@ export default class SimpleScrollbar extends PureComponent {
     children: React.Node,
     autoHide: boolean,
     className?: string,
-    isPolyfilled?: boolean
+    contentClassName?: string,
+    isPolyfilled?: boolean,
+    onYStart: Function,
+    onYEnd: Function,
+    onScrollUp: Function,
+    onScrollDown: Function
   };
 
   state = {
@@ -21,19 +26,20 @@ export default class SimpleScrollbar extends PureComponent {
 
   static defaultProps = {
     isPolyfilled: !bowser.webkit && !bowser.blink,
-    className: null
+    className: null,
+    contentClassName: null
   };
 
   componentDidMount() {
     this.container.addEventListener('scroll', this.handleScroll);
-    this.updateScrollbar();
+    this.update();
   }
 
   componentWillUnmount() {
     this.container.removeEventListener('scroll', this.handleScroll);
   }
 
-  updateScrollbar = callback => {
+  update = callback => {
     const { scrollHeight, offsetHeight, scrollTop } = this.container;
     this.setState(
       {
@@ -46,6 +52,21 @@ export default class SimpleScrollbar extends PureComponent {
   };
 
   handleScroll = () => {
+    const { onYStart, onYEnd, onScrollUp, onScrollDown } = this.props;
+    const { scrollHeight, scrollTop, offsetHeight } = this.state;
+    const height = scrollHeight - offsetHeight;
+    if (onScrollUp !== undefined && scrollTop > this.container.scrollTop) {
+      onScrollUp(height - this.container.scrollTop);
+    }
+    if (onScrollDown !== undefined && scrollTop < this.container.scrollTop) {
+      onScrollDown(height - this.container.scrollTop);
+    }
+    if (onYStart !== undefined && this.container.scrollTop === 0) {
+      onYStart();
+    }
+    if (onYEnd !== undefined && this.container.scrollTop === scrollHeight - offsetHeight) {
+      onYEnd();
+    }
     this.setState({
       scrollTop: this.container.scrollTop
     });
@@ -132,15 +153,15 @@ export default class SimpleScrollbar extends PureComponent {
   };
 
   render() {
-    const { autoHide, className, isPolyfilled } = this.props;
+    const { autoHide, className, contentClassName, isPolyfilled } = this.props;
     const { dragging, scrollTop, scrollHeight } = this.state;
     return (
-      <div className={cx(styles.wrapper, { [styles.wrapperDragging]: dragging })}>
+      <div className={cx(styles.wrapper, className, { [styles.wrapperDragging]: dragging })}>
         <div
           ref={container => {
             this.container = container;
           }}
-          className={cx(styles.container, className, {
+          className={cx(styles.container, contentClassName, {
             [styles['container--hideOnInactive']]: autoHide,
             [styles.polyfilled]: isPolyfilled
           })}
