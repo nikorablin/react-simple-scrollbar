@@ -5,4 +5,4 @@ Simple scrollbar component for React that uses webkit scrollbar styling when pos
 - [ ] Horizontal scrolling
 - [x] Scroll events
 - [ ] Theming
-- [-] Add tests
+- [x] Add tests
